@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../styles/base.css">
 <link rel="stylesheet" href="../styles/componentes.css">
 <link rel="stylesheet" href="../styles/estilos_inicio_sesion.css">
+<link rel="icon" type="image/png" href="../img/logo-minova.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -80,25 +81,10 @@
       <div id="alerta1" class="alert alert-error"></div>
 
       <div class="campo">
-        <label>Tipo de documento</label>
-        <div class="select-wrap">
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 12h6M9 16h6M9 8h2M5 3h14a2 2 0 012 2v16a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/></svg>
-          <select id="tipoDoc">
-            <option value="" disabled selected>Selecciona un tipo...</option>
-            <option value="CC">CC  Cédula de Ciudadanía</option>
-            <option value="TI">TI  Tarjeta de Identidad</option>
-            <option value="CE">CE – Cédula de Extranjería</option>
-            <option value="PA">PA – Pasaporte</option>
-          </select>
-          <svg class="chevron" viewBox="0 0 24 24" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-
-      <div class="campo">
-        <label>Número de documento</label>
+        <label>Correo Electronico</label>
         <div class="input-group" id="wrapDoc">
           <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <input type="text" id="numDoc" placeholder="Ej: 1234567890" inputmode="numeric">
+          <input type="email" id="numDoc" placeholder="Ej: usuario@ejemplo.com">
         </div>
       </div>
 
@@ -109,9 +95,9 @@
       </button>
 
      <div class="links-footer">
-        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.html"> Iniciar Sesion</a></span>
-        <span>¿No tienes una cuenta? <a href="crear_cuenta.html">Registrarme</a></span>
-        <a href="index.html">Ir al inicio</a>
+        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.php"> Iniciar Sesion</a></span>
+        <span>¿No tienes una cuenta? <a href="crear_cuenta.php">Registrarme</a></span>
+        <a href="index.php">Ir al inicio</a>
       </div>
     </div> 
 
@@ -153,9 +139,9 @@
         Cambiar número de documento
       </a>
      <div class="links-footer">
-        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.html"> Iniciar Sesion</a></span>
-        <span>¿No tienes una cuenta? <a href="crear_cuenta.html">Registrarme</a></span>
-        <a href="index.html">Ir al inicio</a>
+        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.php"> Iniciar Sesion</a></span>
+        <span>¿No tienes una cuenta? <a href="crear_cuenta.php">Registrarme</a></span>
+        <a href="index.php">Ir al inicio</a>
       </div>
     </div><!-- /panel2 -->
 
@@ -212,9 +198,9 @@
       </button>
 
        <div class="links-footer">
-        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.html"> Iniciar Sesion</a></span>
-        <span>¿No tienes una cuenta? <a href="crear_cuenta.html">Registrarme</a></span>
-        <a href="index.html">Ir al inicio</a>
+        <span>¿Recordaste tu contraseña?<a href="Iniciar_sesion.php"> Iniciar Sesion</a></span>
+        <span>¿No tienes una cuenta? <a href="crear_cuenta.php">Registrarme</a></span>
+        <a href="index.php">Ir al inicio</a>
       </div>
 
     </div><!-- /panel3 -->
@@ -229,7 +215,7 @@
         <p>Tu contraseña fue actualizada correctamente. Ya puedes iniciar sesión con tus nuevas credenciales.</p>
       </div>
 
-      <a href="Iniciar_sesion.html" class="btn-accion" style="margin-top:24px; text-decoration:none;">
+      <a href="Iniciar_sesion.php" class="btn-accion" style="margin-top:24px; text-decoration:none;">
         <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" width="16" height="16"><path d="M3 12h18M3 12l7-7M3 12l7 7"/></svg>
         <span>Ir al inicio de sesión</span>
       </a>
@@ -238,7 +224,7 @@
     <!-- Footer -->
     <div class="modal-bottom">
       <span class="copy-text">© 2026 MINOVA. Todos los derechos reservados.</span>
-      <a href="ayuda.html" class="btn-ayuda">
+      <a href="ayuda.php" class="btn-ayuda">
         <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
         Ayudas y manuales
       </a>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
-        // Cache-busting: fuerza descarga fresca de base.php en cada carga
+        // Cache-busting: fuerza descarga fresca de base.html en cada carga
         const response = await fetch("../php/base.php?v=" + Date.now());
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const html = await response.text();
@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         const mapa = {
-            'index.html': 'inicio',
-            'equipos.html': 'equipos',
-            'reportes.html': 'reportes',
-            'uso_diario.html': 'uso diario',
-            'usuarios.html': 'usuarios',
-            'ubicaciones.html': 'ubicaciones',
-            'maquinas.html': 'maquinas',
-            'herramientas_con.html': 'herramientas_consumibles',
-            'acerca_de.html': 'acerca de',
-            'ayuda.html': 'ayuda'
+            'index.php': 'inicio',
+            'equipos.php': 'equipos',
+            'reportes.php': 'reportes',
+            'uso_diario.php': 'diario',
+            'usuarios.php': 'usuarios',
+            'ubicaciones.php': 'ubicaciones',
+            'maquinas.php': 'maquinas',
+            'herramientas_con.php': 'consumibles',
+            'acerca_de.php': 'acerca de',
+            'ayuda.php': 'ayuda'
         };
 
         const activo = mapa[pagina];
@@ -483,13 +483,13 @@ function marcarTodas() {
 
 }
 function irPerfil() {
-    window.location.href = 'perfil.html';
+    window.location.href = 'perfil.php';
     cerrarTodos();
 
 }
 
 function irSuperadmin() {
-    window.location.href = 'superadmin.html';
+    window.location.href = 'superadmin.php';
     cerrarTodos();
 
 }
@@ -497,7 +497,7 @@ function irSuperadmin() {
 function cerrarSesion() {
 
     if (confirm('¿Deseas cerrar sesión?')) {
-        window.location.href = '../html/Iniciar_sesion.html';
+        window.location.href = '../php/Iniciar_sesion.php';
     }
 
 }
