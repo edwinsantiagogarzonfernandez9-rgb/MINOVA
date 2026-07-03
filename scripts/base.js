@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
-        // Cache-busting: fuerza descarga fresca de base.html en cada carga
-        const response = await fetch("../html/base.html?v=" + Date.now());
+        // Cache-busting: fuerza descarga fresca de base.php en cada carga
+        const response = await fetch("../php/base.php?v=" + Date.now());
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const html = await response.text();
 
@@ -156,6 +156,257 @@ function _iniciarEventos() {
         });
     });
 
+    // ── Panel de accesibilidad ──
+    const btnAccesibilidad = document.getElementById('btnAccesibilidad');
+    const panelAccesibilidad = document.getElementById('panelAccesibilidad');
+    const cerrarAccesibilidad = document.getElementById('cerrarAccesibilidad');
+
+    if (btnAccesibilidad && panelAccesibilidad) {
+        btnAccesibilidad.addEventListener('click', () => {
+            panelAccesibilidad.classList.toggle('activo');
+        });
+    }
+
+    if (cerrarAccesibilidad && panelAccesibilidad) {
+        cerrarAccesibilidad.addEventListener('click', () => {
+            panelAccesibilidad.classList.remove('activo');
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && panelAccesibilidad?.classList.contains('activo')) {
+            panelAccesibilidad.classList.remove('activo');
+        }
+    });
+
+    // ── desplegar control del texto ──
+    const controlTexto = document.getElementById("contenedorTexto");
+
+    controlTexto.addEventListener("click", function(e){
+
+    // Evita que al pulsar + o - vuelva a cerrar el panel
+    if(e.target.classList.contains("btn-texto")) return;
+
+    this.classList.toggle("activo");
+
+});
+
+/*==========================================
+=      PREFERENCIAS DE ACCESIBILIDAD       =
+==========================================*/
+
+const preferenciasDefecto = {
+
+    tamanoTexto: 3,      // Nivel por defecto (16px)
+    modoOscuro: false,
+    altoContraste: false
+
+};
+
+const preferencias = {
+
+    ...preferenciasDefecto
+
+};
+
+const guardadas = localStorage.getItem("accesibilidad");
+
+if (guardadas) {
+
+    Object.assign(preferencias, JSON.parse(guardadas));
+
+}
+
+function guardarPreferencias(){
+
+    localStorage.setItem(
+        "accesibilidad",
+        JSON.stringify(preferencias)
+    );
+
+}
+
+  
+//constantes de cada boton de accesibilidad
+const btnMas = document.getElementById("mas");
+const btnMenos = document.getElementById("menos");
+const indicador = document.getElementById("nivelTexto");
+const btnModoOscuro = document.getElementById("modoOscuro");
+const btnContraste =document.getElementById("altoContraste");
+const btnReset = document.getElementById("reset");
+
+const btnLeer = document.getElementById("leer");
+  /*==========================================
+=         CONTROL TAMAÑO DE TEXTO          =
+==========================================*/
+
+
+// Niveles disponibles
+// 13px (-3)
+// 14px (-2)
+// 15px (-1)
+// 16px (0)
+// 17px (+1)
+// 18px (+2)
+// 19px (+3)
+// 20px (+4)
+
+const niveles = [13, 14, 15, 16, 17, 18, 19, 20];
+
+function actualizarTexto(){
+
+    document.documentElement.style.fontSize =
+        niveles[preferencias.tamanoTexto] + "px";
+
+    const nivel = preferencias.tamanoTexto - 3;
+
+    indicador.textContent = nivel > 0 ? "+" + nivel : nivel;
+
+    btnMenos.disabled = preferencias.tamanoTexto === 0;
+
+    btnMas.disabled =
+        preferencias.tamanoTexto === niveles.length-1;
+    
+
+    guardarPreferencias();
+
+}
+
+
+/* ---------- Aumentar ---------- */
+
+btnMas.addEventListener("click",e=>{
+
+    e.stopPropagation();
+
+    if(preferencias.tamanoTexto < niveles.length-1){
+
+        preferencias.tamanoTexto++;
+
+        actualizarTexto();
+
+    }
+
+});
+
+/* ---------- Disminuir ---------- */
+
+btnMenos.addEventListener("click",e=>{
+
+    e.stopPropagation();
+
+    if(preferencias.tamanoTexto > 0){
+
+        preferencias.tamanoTexto--;
+
+        actualizarTexto();
+
+    }
+
+});
+
+/* =========================
+   Modo oscuro
+   ========================= */
+   if(btnModoOscuro){
+    btnModoOscuro.addEventListener("click",()=>{
+
+        preferencias.modoOscuro = !preferencias.modoOscuro;
+
+        aplicarModoOscuro();
+    });
+   }
+
+
+    //APLICAR MODO OSCUROOOOOOOOOOOO
+    function aplicarModoOscuro(){
+
+        document.documentElement.classList.toggle(
+            "dark-theme",
+            preferencias.modoOscuro
+        );
+
+          btnModoOscuro.classList.toggle(
+            "activo",
+            preferencias.modoOscuro
+        );
+        guardarPreferencias();
+    }
+
+
+/* =========================
+   LEER / DETENER
+========================= */
+
+    let leyendo = false;
+
+    if(btnLeer){
+        btnLeer.addEventListener("click", ()=>{
+            if(!leyendo){
+                const texto = document.body.innerText;
+                const voz = new SpeechSynthesisUtterance(texto);
+
+                voz.onend = ()=> leyendo = false;
+
+                speechSynthesis.speak(voz);
+                leyendo = true;
+            }else{
+                speechSynthesis.cancel();
+                leyendo = false;
+            }
+        });
+    }
+
+    /* =========================
+   Alto contraste
+========================= */
+
+    btnContraste.addEventListener("click",()=>{
+
+        preferencias.altoContraste =
+            !preferencias.altoContraste;
+
+            aplicarContraste();
+
+        });
+
+        function aplicarContraste(){
+
+            document.documentElement.classList.toggle(
+                "alto-contraste",
+                preferencias.altoContraste
+            );
+
+            btnContraste.classList.toggle(
+                "activo",
+                preferencias.altoContraste
+            );
+
+            guardarPreferencias();
+        }
+
+         /* =========================
+             RESETEAR ACCESIBILIDA
+        ========================= */
+        
+        btnReset.addEventListener("click",restablecerPreferencias);
+        function restablecerPreferencias(){
+
+            Object.assign(
+            preferencias,
+            preferenciasDefecto
+            );
+            actualizarTexto();
+            aplicarModoOscuro();
+            aplicarContraste();
+        };
+
+       /* ---------- GUARDAR preferencias ---------- */
+
+        actualizarTexto();
+        aplicarModoOscuro();
+        aplicarContraste();
+    
     // ── Re-escanear iconos Font Awesome tras inyección dinámica ──
     if (window.FontAwesome) FontAwesome.dom.i2svg();
 }

@@ -1,20 +1,82 @@
 :root {
+  
     --principal:        #010440;
     --secundario:       #394CAA;
     --sidebar:          #010440f0;
-    --fondo:            #B4B5B9;
-    --contenedor:       #CACACC;
+    --accesibilidad:    #cacaccd5;
+    --fondo:             #CACACC;
+    --contenedor:       #ffffffe2; 
+    --blanco:            #ffffff;
     --texto:            #0D0D0D;
     --texto2:           #404040;
     --rojo:             #FF0000;
     --amarillo:         #FFD800;
     --verde:            #00B333;
-    --white:            #FFFFFF;
-    --blanco:           #FFFFFF;
     --verde:            #639922;
     --rojo:             #E24B4A;
     --Azul-difuminado:  linear-gradient(135deg, var(--principal), var(--secundario));
     --hover-principal:   rgba(255,255,255,.15);
+}
+/*======================
+   MODO OSCURO NENAS
+                    */
+html.dark-theme{
+    --principal: #142140;
+    --secundario: #294A70;
+    --sidebar: #101C33;
+    --accesibilidad: #24364D;
+    --fondo: #1A2433;
+    --contenedor: #35455c;
+    --texto: #F5F7FA;
+    --texto2: #B8C3D1;
+  
+    --Azul-difuminado:
+        linear-gradient(
+            135deg,
+            var(--principal),
+            var(--secundario)
+        );
+
+    --hover-principal: rgba(255,255,255,.08);
+}
+
+/*======================
+   MODO ALTO CONTRASTE
+   =========================*/
+
+html.alto-contraste{
+    --principal:#000E5C; --secundario:#2457D6; --sidebar:#000428;
+     --accesibilidad:#002E8A; --fondo:#FFFFFF; --contenedor:#ffffff5d;
+    --texto:#000000;--texto2:#111111;--hover-principal:#D9E7FF;
+}
+
+html.alto-contraste *{text-shadow:none !important;}
+
+/* html.alto-contraste *:focus{
+
+    outline:.1875rem solid #FFD800;
+
+    outline-offset:.125rem;
+
+} */
+
+
+/*======================
+   Convivencia de oscurin y contraste
+   =========================*/
+html.dark-theme.alto-contraste{
+    --principal:#000000;
+    --secundario:#0047CC;
+    --sidebar:#000000;
+    --fondo:#000000;
+    --contenedor:#111111;
+    --texto:#FFFFFF;
+    --texto2:#F5F5F5;
+    --hover-principal:#1F5FFF;
+}
+
+html{
+    font-size:16px;/* Tamaño de fuente de donde parte para aumentar fuente*/
 }
 
 *, *::before, *::after {  
@@ -22,15 +84,15 @@
     padding: 0;
     box-sizing: border-box; 
 }
-* {
-    font-family: 'Segoe UI', sans-serif;
-    
-}
+
 
 body{
     width: 100%;
     height: 100vh;
+   
+    font-family: 'Segoe UI', sans-serif;
 }
+
 
 /* ======================
    ESTRUCTURA GENERAL
@@ -38,18 +100,20 @@ body{
 .topbar{grid-area: topbar;}
 .sidebar{grid-area: sidebar;}
 #contenido{grid-area: contenido;}
+.btn-accesibilidad{grid-area : accesibilidad;}
 footer{grid-area: footer;}
 
 /* ===== DESKTOP ===== */
 
 .grid-base{
+     background-color: var(--fondo);
     min-height:100vh;
-
     display:grid;
 
     grid-template:
         "topbar topbar" auto
         "sidebar contenido" 1fr
+        "accesibilidad accesibilidad"auto
         "footer footer" auto
         / auto 1fr;
 
@@ -67,12 +131,14 @@ footer{grid-area: footer;}
         grid-template:
             "topbar topbar" auto
             "sidebar contenido" 1fr
+            "accesibilidad accesibilidad"auto
             "footer footer" auto
             / auto 1fr;
 
                .logo img{
               max-width:120px;
           }
+ 
       
           footer{
               display: grid;
@@ -92,52 +158,52 @@ footer{grid-area: footer;}
 /* ===== MOVIL ===== */
 
 @media (max-width:767px){
-
     .grid-base{
 
         grid-template:
             "topbar topbar" auto
             "sidebar contenido" 1fr
+            "accesibilidad accesibilidad"auto
             "footer footer" auto
             / auto 1fr;
 
         
-          .topbar{
+        .topbar{
                display:grid;
 
               grid-template-columns:
                  auto  auto;
-
-
               align-items:center;
-          } 
+        } 
           .centro{
             display: none;
           }
-          
+          .sidebar li,
           .profile-btn div{
               display:none;
-          } 
-
-          
-          .sidebar{
-           width:0;
+        }
+        .sidebar {
+           width:0; 
+           background-color: var(--principal);
+           
           }
+        
          .sidebar.cerrado{
             width: 14.75rem !important;
          }
-         .sidebar.cerrado span{
-            display: block;
+         .sidebar.cerrado a{
+            justify-content: left !important;
+         }
+         .sidebar.cerrado span,
+         .sidebar.cerrado li{
+            display: block ;
          }
 
-         
-   
-         
          main{
             margin-left:0 !important;
          }
 
-         main .cerrado{
+         main.cerrado{
             margin-left:0 !important;
          }
         
@@ -194,6 +260,9 @@ footer{grid-area: footer;}
     .logo img{
          max-width:120px;
      }
+     .btn-accesibilidad{
+        grid-template-columns: auto;
+     }
 
     footer{
          display: grid;
@@ -218,13 +287,13 @@ footer{grid-area: footer;}
     border-bottom:3px solid var(--secundario);
     position:fixed; top: 0; left: 0;
     background:var(--Azul-difuminado);
-    color:var(--white);
+    color:var(--blanco);
     z-index: 200;
     width: 100%;
     height: 5rem;
 }
 .topbar h2 {
-    font-size: 18px;
+    font-size: 1.1rem;
     font-weight: 600;
     flex: 1;
     text-align: center;
@@ -273,80 +342,54 @@ footer{grid-area: footer;}
     width: 14.75rem;
     height: 100%;
     background: var(--sidebar);
-    color: var(--white);
+    color: var(--blanco);
     padding: 20px;
-    display: flex;
     position: fixed; top: 0;left: 0;
-    flex-direction: column;
-    justify-content: space-between;
     transition: 0.5s;
     border-right: 2px solid var(--secundario);
     z-index: 100;
     padding: 1.1rem 0;
-    overflow-y:auto; /* añadir barra lateral si hay mucho contenido */
 }
 
-.sidebar a,
-.sidebar .menu-titulo {
-    list-style: none;
+.sidebar a{
     display: flex;
-    align-items: center;
     gap: 1.3rem;
-    padding: 0.3rem 0.2rem;
-    border-radius: 0.5rem;
+    justify-content: left !important;
+    align-items: center;
+    padding: 0.4rem 0.2rem;
+    text-decoration: none;
     white-space: nowrap;
     overflow: hidden; 
     margin: 0 0.5rem;
-    text-decoration: none;
     color: var(--blanco);
-}
-.sidebar .menu-desplegable,
-.sidebar span{
     text-align: justify;
+    transition: .3s;
+}
+
+.sidebar > ul > li {
+    padding: 0.8rem;
+    border-radius: 0.5rem;
 }
 
 .sidebar li:hover { background:var(--hover-principal); }
 .sidebar .active  { background: var(--hover-principal); border-bottom: 4px solid var(--blanco); }
 
-.sidebar > ul > li {
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.sidebar li a span {
-    flex: 1;
-    text-align: center;
-}
-
-.menu-titulo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.menu-titulo div { display: flex; align-items: center; gap: 12px; }
-
-.sidebar i     { font-size: 1rem; }
-.sidebar .submenu     { list-style: none; padding-left:0; margin-top: 10px; display: none; }
-.menu-desplegable .submenu        { display: none; }
-.menu-desplegable.activo .submenu { display: block; }
+.sidebar .submenu{ list-style: none; padding-left: 1rem; margin-top: 10px; display: none;  }
+.submenu li{border-radius: 0.5rem;}
+.menu-desplegable .submenu{ display: none;  }
+.menu-desplegable.activo .submenu{ display: block; }
 
 .flecha { transition: 0.3s; }
 .menu-desplegable.activo .flecha { transform: rotate(180deg); }
 
 
 /* Sidebar cerrado estilos */
-.sidebar.cerrado {  
-    width: 5rem; 
-    align-items: center;
-    list-style: none;
-   
+.sidebar.cerrado{ 
+    width: 4rem; 
 }
-
+.sidebar.cerrado a{
+    justify-content: center !important;
+}
 
 .sidebar li:hover .submenu{display:block; transition:.3s;}
 .sidebar.cerrado li{list-style:none; }
@@ -436,8 +479,8 @@ footer{grid-area: footer;}
     position: relative;
     background: none;
     border: none;
-    color: var(--white);
-    font-size: 22px;
+    color: var(--blanco);
+    font-size: 1.3rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
@@ -452,8 +495,8 @@ footer{grid-area: footer;}
     width: 17px; height: 17px;
     border-radius: 50%;
     background: var(--rojo);
-    color: var(--white);
-    font-size: 9px;
+    color: var(--blanco);
+    font-size: 0.563rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -468,7 +511,7 @@ footer{grid-area: footer;}
     gap: 10px;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--blanco);
     cursor: pointer;
     padding: 6px 10px;
     border-radius: 10px;
@@ -481,10 +524,10 @@ footer{grid-area: footer;}
     object-fit: cover;
     border: 2px solid rgba(255,255,255,.35);
 }
-.profile-btn h4      { color: white; font-size: 14px; margin-bottom: 2px; }
+.profile-btn h4      { color: var(--blanco); font-size: 14px; margin-bottom: 2px; }
 .profile-btn .role-tag {
     color: var(--amarillo);
-    font-size: 11px;
+    font-size: 0.688rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -516,7 +559,8 @@ main.cerrado{
 .welcome p  { color: var(--texto2); }
 
 .date {
-    background: var(--white);
+    background: var(--contenedor);
+    color: var(--texto);
     padding: 15px 25px;
     border-radius: 12px;
 }
@@ -524,7 +568,7 @@ main.cerrado{
 .overlay-panel {
     position: absolute;
     top: calc(100% + 8px);
-    background: var(--white);
+    background: var(--contenedor);
     border-radius: 16px;
     box-shadow: 0 8px 40px rgba(1,4,64,.22);
     z-index: 9999;
@@ -553,17 +597,17 @@ main.cerrado{
     border-bottom: 1px solid #e8e8e8;
 }
 .alerts-header h3 {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--texto);
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.alerts-header h3 i { color: var(--principal); }
+.alerts-header h3 i { color: var(--texto2); }
 .alerts-header .mark-all {
-    font-size: 11px;
-    color: var(--principal);
+    font-size: 0.688rem;
+    color: var(--texto2);
     background: none;
     border: none;
     cursor: pointer;
@@ -609,7 +653,7 @@ main.cerrado{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 0.938rem;
     flex-shrink: 0;
     margin-top: 1px;
 }
@@ -619,12 +663,12 @@ main.cerrado{
 .prio-baja    .alert-icon-wrap { background: rgba(0,179,51,.12);  color: var(--verde); }
 
 .alert-body             { flex: 1; min-width: 0; }
-.alert-body .a-title    { font-size: 13px; font-weight: 600; color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.alert-body .a-desc     { font-size: 11px; color: var(--texto2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.alert-body .a-time     { font-size: 10px; color: #999; margin-top: 4px; }
+.alert-body .a-title    { font-size: 0.813rem; font-weight: 600; color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.alert-body .a-desc     { font-size: 0.688rem; color: var(--texto2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.alert-body .a-time     { font-size: 0.625rem; color: #999; margin-top: 4px; }
 
 .prio-pill {
-    font-size: 9px; font-weight: 700;
+    font-size: 0.563rem; font-weight: 700;
     padding: 2px 7px;
     border-radius: 20px;
     white-space: nowrap;
@@ -646,11 +690,11 @@ main.cerrado{
     align-items: center;
     gap: 8px;
     background: var(--principal);
-    color: var(--white);
+    color: var(--blanco);
     border: none;
     border-radius: 50px;
     padding: 9px 22px;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 700;
     cursor: pointer;
     transition: background .2s, transform .15s;
@@ -677,12 +721,12 @@ main.cerrado{
     object-fit: cover;
     border: 3px solid rgba(255,255,255,.4);
 }
-.perfil-header h3 { color: var(--white); font-size: 16px; font-weight: 700; }
+.perfil-header h3 { color: var(--blanco); font-size: 16px; font-weight: 700; }
 .perfil-header .role-badge {
     background: rgba(255,216,0,.18);
     color: var(--amarillo);
     border: 1px solid rgba(255,216,0,.4);
-    font-size: 11px; font-weight: 700;
+    font-size: 0.688rem; font-weight: 700;
     padding: 3px 12px;
     border-radius: 20px;
     display: flex;
@@ -695,7 +739,7 @@ main.cerrado{
     border-bottom: 1px solid #eee;
 }
 .perfil-info p {
-    font-size: 13px;
+    font-size: 0.813rem;
     font-weight: 600;
     color: var(--texto);
     margin-bottom: 8px;
@@ -705,10 +749,10 @@ main.cerrado{
     align-items: center;
     gap: 10px;
     padding: 7px 0;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--texto2);
 }
-.perfil-info-row i { width: 16px; text-align: center; color: var(--principal); font-size: 13px; }
+.perfil-info-row i { width: 16px; text-align: center; color: var(--principal); font-size: 0.813rem; }
 
 .perfil-actions {
     padding: 14px 18px 16px;
@@ -737,7 +781,7 @@ main.cerrado{
     padding: 1rem;
 }
 .modal-form {
-    background: var(--white);
+    background:var(--contenedor);
     width: 100%; max-width: 32rem;
     border-radius: 1rem;
     padding: 1.5rem;
@@ -815,9 +859,10 @@ main.cerrado{
     border: none;
     border-radius: 12px;
     background: rgba(255,255,255,.12);
-    color: var(--white);
+    color: var(--blanco);
     cursor: pointer;
-    font-size: 17px; font-weight: 600;
+    font-size: 1.063rem;
+    font-weight: 600;
     transition: .3s ease;
 }
 .logout:hover {
@@ -825,7 +870,7 @@ main.cerrado{
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,.25);
 }
-.logout i { font-size: 18px; }
+.logout i { font-size: 1.125rem; }
 
 
 
@@ -840,9 +885,9 @@ main.cerrado{
     border:none;
     border-radius:12px;
     background:rgba(255,255,255,.12);
-    color:var(--white);
+    color:var(--blanco);
     cursor:pointer;
-    font-size:17px;
+    font-size:1.063rem;
     font-weight:600;
     transition:.3s ease;
 }
@@ -854,7 +899,7 @@ main.cerrado{
 }
 
 .logout i{
-    font-size:18px;
+    font-size:1.125rem;
 }
 
 
@@ -862,7 +907,7 @@ main.cerrado{
 
 footer{
     background:var(--Azul-difuminado);
-    color:var(--white);
+    color:var(--blanco);
     border-top:4px solid var(--secundario);
     display:flex;
     flex-direction:column;
@@ -876,7 +921,7 @@ footer{
     display:flex;
     align-items:center;
     justify-content:center;
-    border-bottom:2px solid var(--white);
+    border-bottom:2px solid var(--blanco);
     gap:25px;
     padding-bottom:15px;
     margin-bottom:10px;
@@ -885,7 +930,7 @@ footer{
 .logoSenaFooter{
     height:60px;
     width:auto;
-    border-right:5px solid var(--white);
+    border-right:5px solid var(--blanco);
     padding-right:20px;
 }
 
@@ -901,4 +946,199 @@ footer{
     justify-content:center;
     line-height:1.4;
 }
+
+/* ==============================
+   BOTÓN DE ACCESIBILIDAD
+   ============================== */
+
+
+.btn-accesibilidad {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background: var(--secundario);
+    color: var(--blanco);
+   
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 50;
+}
+
+
+/* ==============================
+   HEADER DEL PANEL
+   ============================== */
+.header-accesibilidad {
+ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--principal);
+    padding: 10px;
+}
+
+.header-accesibilidad img {
+    display: flex;
+   
+    border-radius: 20%;
+}
+
+.header-accesibilidad #cerrarAccesibilidad:hover {
+    background: var(--rojo);
+}
+
+.texto-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: var(--texto);
+}
+
+
+/* ==============================
+   PANEL DE ACCESIBILIDAD
+   ============================== */
+
+.contenedor-btns{
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    gap: 0.6rem;
+}
+
+.panel-accesibilidad {
+    position: fixed;
+    bottom: 5rem;
+    right: 1.25rem;
+    width: auto;
+    height: auto;
+    background: var(--accesibilidad);
+    border: 1px solid var(--principal);
+    border-radius: 10px;
+    padding: 15px;
+    display: none;
+    z-index: 50;
+}
+
+.panel-accesibilidad.activo {
+    display: block;
+}
+
+.panel-accesibilidad button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: var(--Azul-difuminado);
+    color: var(--blanco);
+    font-weight: bold;
+    width: 100%;
+    margin: 0.3rem 0;
+    padding: 0.9rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+}
+
+
+/* ==============================
+   SECCION DE TAMAÑO DE TEXTO
+   ============================== */
+.contenedor-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--Azul-difuminado);
+    color: var(--blanco);
+    font-weight: bold;
+    width: 100%;
+    margin: 0.3rem 0;
+    padding: 0.9rem;
+  
+    border-radius: 0.375rem;
+    cursor: pointer
+    
+}
+.contenedor-texto:hover{transform: translateY(-0.125rem); }
+
+
+
+/*contenedor de aumentar y disminuir*/
+.grupo-botones {
+    display:grid;
+    grid-template-columns:auto auto auto;
+
+    gap:1rem;
+
+    justify-content:center;
+
+    max-height:0;
+    opacity:0;
+
+    overflow:hidden;
+
+    transition:
+        max-height .25s ease,
+        opacity .2s ease,
+        margin-top .2s ease;
+}
+
+/*mostrar botones - y + cuando este activo*/
+.contenedor-texto.activo .grupo-botones{ max-height:4rem; opacity:1; margin-top:.75rem;}
+
+
+/*botones de aumentar y disminuir*/
+.btn-texto {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.375rem;
+
+    cursor: pointer;
+    color: var(--blanco);
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+/* indicador de tamaño de texto */
+.nivel-texto{
+    width:auto;
+    text-align:center;
+    font-weight:bold;
+    color:var(--blanco);
+    font-size:0.9rem;
+}
+
+#accesibilidad button{
+
+    transition:
+        background .25s,
+        transform .2s,
+        color .2s;
+
+}
+
+#accesibilidad button.activo{
+
+    background: var(--verde);
+
+    color: var(--blanco);
+
+    border-color: var(--verde);
+
+}
+
+#accesibilidad button.activo i{
+
+    color: var(--blanco);
+
+}
+
+
 

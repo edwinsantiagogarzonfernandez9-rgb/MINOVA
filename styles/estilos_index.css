@@ -6,9 +6,11 @@ grid contenedor= grid individual de cada pagina*/
 .middle{grid-area: paneles;}
 .alerts-panel{grid-area: alertas;}
 
-body{
-    background: var(--contenedor);
-}
+html.alto-contraste .card,
+html.alto-contraste .panel,
+html.alto-contraste .seccion1,
+html.alto-contraste .seccion2{border:.125rem solid var(--texto);box-shadow:none;}
+html.alto-contraste .status{ border:.125rem solid #000;}
 
 
 
@@ -161,7 +163,7 @@ body{
 .logout{
     border:none;
     background:none;
-    color:var(--white);
+    color:var(--contenedor);
     cursor:pointer;
     font-size:17px;
     text-align:left;
@@ -169,10 +171,12 @@ body{
 
 
 .cards{
+   
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
     margin-bottom:25px;
+  
 }
 .cards2{
     display:grid;
@@ -182,15 +186,17 @@ body{
 }
 
 .card{
-    background:var(--white);
     border-radius:15px;
     padding:25px;
     box-shadow:0 3px 8px rgba(0,0,0,.08);
+    background:var(--contenedor);
+ 
 }
 
 .card h2{
     font-size:45px;
     margin:15px 0;
+    color:var(--texto2);
 }
 
 .card h3{
@@ -259,7 +265,7 @@ body{
 
 .blue{
     background:rgba(57,76,170,.15);
-    color:var(--principal);
+    color:var(--texto);
 }
 
 
@@ -272,7 +278,7 @@ body{
 }
 
 .panel{
-    background:var(--white);
+    background:var(--contenedor);
     border-radius:0.9375rem;
     padding:1.5625rem;
     box-shadow:0 0.1875rem 0.5rem rgba(0,0,0,.08);
@@ -384,7 +390,7 @@ body{
     content:"";
     width:120px;
     height:120px;
-    background:var(--white);
+    background:var(--contenedor);
     border-radius:50%;
     position:absolute;
     top:50%;
@@ -542,7 +548,7 @@ body{
 .logout {
     border: none;
     background: none;
-    color: var(--white);
+    color: var(--contenedor);
     cursor: pointer;
     font-size: 17px;
     text-align: left;

@@ -148,7 +148,7 @@
                         </a>
 
                         <ul class="submenu">
-                            <br><li><a href="herramientas_con.html"><i class="fa-solid fa-wrench"></i> <span>Consumibles</span></a></li><br>
+                           <li><a href="herramientas_con.html"><i class="fa-solid fa-wrench"></i> <span>Consumibles</span></a></li>
                             <li><a href="herramientas_c_n.html"><i class="fa-solid fa-tools"></i> <span>No consumibles</span></a></li>
                         </ul>
                     </li>
@@ -172,25 +172,33 @@
                     </li>
                     <li>
                         <a href="uso_diario.html">
-                            <i class="fa-solid fa-clipboard-check"></i>
+                            <div class="izquierda">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
                             <span>Diario</span>
                         </a>
                     </li>
                     <li>
                         <a href="usuarios.html">
-                            <i class="fa-solid fa-users"></i>
+                            <div class="izquierda">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
                             <span>Usuarios</span>
                         </a>
                     </li>
                     <li>
                         <a href="acerca_de.html">
-                            <i class="fa-solid fa-info-circle"></i>
+                            <div class="izquierda">
+                                <i class="fa-solid fa-info-circle"></i>
+                            </div>
                             <span>Acerca de</span>
                         </a>
                     </li>
                     <li>
                         <a href="ayuda.html">
-                            <i class="fa-solid fa-circle-question"></i>
+                            <div class="izquierda">
+                                <i class="fa-solid fa-circle-question"></i>
+                            </div>
                             <span>Ayuda</span>
                         </a>
                     </li>
@@ -206,6 +214,33 @@
                 <main id="contenido">
                     
                 </main>
+
+                <button id="btnAccesibilidad" class="btn-accesibilidad" type="button" aria-label="Abrir accesibilidad">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
+
+                <div class="panel-accesibilidad" id="panelAccesibilidad">
+                    <div class="header-accesibilidad">
+                        <div class="texto-header">
+                            <h3><strong>Accesibilidad</strong></h3>
+                            <small>Personaliza tu experiencia</small>
+                        </div>
+                        <button id="cerrarAccesibilidad" type="button" aria-label="Cerrar accesibilidad">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="control-texto">
+                        <h3 class="titulo-control">TAMAÑO TEXTO</h3>
+                        <div class="grupo-botones">
+                            <button id="menos" class="btn-texto" type="button">−</button>
+                            <button id="mas" class="btn-texto" type="button">+</button>
+                        </div>
+                    </div>
+                    <button id="modoOscuro" type="button"><i class="fa-solid fa-moon"></i><span>Modo oscuro</span></button>
+                    <button id="leer" type="button"><i class="fa-solid fa-volume-high"></i><span>Leer página</span></button>
+                    <button id="reset" type="button"><i class="fa-solid fa-rotate-left"></i><span>Restablecer todo</span></button>
+                </div>
+        
         <footer>
             <div class="secFooterPrincipal">
                 <img class="logoSenaFooter" src="../img/logo-sena-blanco.png" alt="SENA">

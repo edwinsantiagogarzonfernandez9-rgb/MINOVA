@@ -142,12 +142,10 @@
                         </a>
                     </li>
                     <li class="menu-desplegable">
-                        <div class="menu-titulo">
-                            <div>
+                        <a class="menu-titulo">
                                 <i class="fa-solid fa-screwdriver-wrench"></i>
                                 <span>Herramientas</span>
-                            </div>
-                        </div>
+                         </a>
 
                         <ul class="submenu">
                             <br><li><a href="herramientas_con.php"><i class="fa-solid fa-wrench"></i> <span>Consumibles</span></a></li><br>
@@ -203,6 +201,38 @@
                 <main id="contenido">
                     
                 </main>
+
+                <button id="btnAccesibilidad" class="btn-accesibilidad" type="button" aria-label="Abrir accesibilidad">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
+
+                <div class="panel-accesibilidad" id="panelAccesibilidad">
+                    <div class="header-accesibilidad">
+                        <img src="../icons/accesibilidad.svg" alt="Accesibilidad">
+                        <div class="texto-header">
+                             
+                            <h3><strong>Accesibilidad</strong></h3>
+                            <small>Personaliza Minova</small>
+                        </div>
+                        <img src="../icons/cerrar.svg" alt="Cerrar" id="cerrarAccesibilidad">
+                        
+                    </div>
+                    <div class="contenedor-btns">
+                        <div class="contenedor-texto" id="contenedorTexto">
+                            <i class="fa-solid fa-font"></i>
+                            <span>Tamaño</span>
+                            <div class="grupo-botones">
+                                <button id="menos" class="btn-texto" type="button">−</button>
+                                 <span id="nivelTexto" class="nivel-texto">0</span>
+                                <button id="mas" class="btn-texto" type="button">+</button>
+                            </div>
+                        </div>
+                            <button id="modoOscuro" type="button"><i class="fa-solid fa-moon"></i><span>Modo oscuro</span></button>
+                            <button id="altoContraste" type="button"><i class="fa-solid fa-circle-half-stroke"></i><span>Alto contraste</span></button>
+                            <button id="leer" type="button"><i class="fa-solid fa-volume-high"></i><span>Leer página</span></button>
+                    </div>
+                    <button id="reset" type="button"><i class="fa-solid fa-rotate-left"></i><span>Restablecer</span></button>
+                </div>
         <footer>
             <div class="secFooterPrincipal">
                 <img class="logoSenaFooter" src="../img/logo-sena-blanco.png" alt="SENA">

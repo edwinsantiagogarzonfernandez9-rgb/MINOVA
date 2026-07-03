@@ -2,9 +2,7 @@
 .btn-container { grid-area: botones; }
 .table-wrap    { grid-area: tabla; }
 
-body {
-    background: var(--contenedor);
-}
+
 
 /* ===== DESKTOP ===== */
 .grid-contenedor {
