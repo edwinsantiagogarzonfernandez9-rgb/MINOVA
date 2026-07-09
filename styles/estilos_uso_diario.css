@@ -1,9 +1,11 @@
-/* --- Estructura del Grid --- */
-.welcome { grid-area: bienvenida; }
-.table-wrap1 { grid-area: tabla; }
+.welcome       { grid-area: bienvenida; }
 .btn-container { grid-area: botones; }
 
-/* Contenedor principal */
+body {
+    background: var(--contenedor);
+}
+
+/* ===== DESKTOP ===== */
 .grid-contenedor {
     display: grid;
     min-height: 100vh;

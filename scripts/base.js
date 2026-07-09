@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Asignar eventos DESPUÉS de que todo el HTML esté en el DOM
         _iniciarEventos();
 
+        _cargarMinovita();
+
         // Disparar evento para que otros scripts sepan que el contenido ya está listo
         document.dispatchEvent(new Event("baseLoaded"));
 
@@ -68,6 +70,69 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 });
+
+
+/* ─────────────────────────────────────────
+   inyeccion minovita 
+───────────────────────────────────────── */
+function _cargarMinovita() {
+
+    if (document.getElementById("chatToggle")) return; // ya inyectado
+
+    const widgetHTML = `
+        <div id="chatToggle" class="minovita-btn" title="MINOVITA IA">
+            <div class="orbit orbit1"></div>
+            <div class="orbit orbit2"></div>
+            <div class="online-dot"></div>
+            <div class="face"><span class="eye"></span><span class="eye"></span></div>
+            <div class="notif-badge" id="notifBadge">1</div>
+        </div>
+
+        <div id="chatWindow" role="dialog" aria-label="Chat MINOVITA IA">
+            <div class="cw-header">
+                <div class="cw-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="cw-info">
+                    <h4>Asistente MINOVITA</h4>
+                    <p><span class="cw-dot"></span> en línea</p>
+                </div>
+                <div class="cw-header-actions">
+                    <button class="cw-header-btn" id="cwClear" title="Limpiar conversación">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <button class="cw-header-btn" id="cwClose" title="Cerrar">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="cw-messages" id="cwMessages"></div>
+            <div class="cw-chips" id="cwChips" style="display:none;"></div>
+            <div class="cw-input-area">
+                <textarea id="cwInput" placeholder="Pregúntale algo a MINOVA IA…" rows="1"></textarea>
+                <button id="cwSend" title="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div id="toast">✅ Copiado</div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", widgetHTML);
+
+    // Cargar CSS del widget
+    const css = document.createElement("link");
+    css.id = "minovita-css";
+    css.rel = "stylesheet";
+    css.href = "../minovita/estilos_minovita.css";
+    document.head.appendChild(css);
+
+    // Cargar JS del widget en orden: config primero, luego la lógica
+    const scriptConfig = document.createElement("script");
+    scriptConfig.src = "../minovita/config_minovita.js";
+    scriptConfig.onload = () => {
+        const scriptWidget = document.createElement("script");
+        scriptWidget.src = "../minovita/widget_minovita.js";
+        document.body.appendChild(scriptWidget);
+    };
+    document.body.appendChild(scriptConfig);
+
+}
 
 
 function _iniciarEventos() {
