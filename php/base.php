@@ -184,9 +184,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="uso_diario.php">
+                        <a href="empresa.php">
                             <i class="fa-solid fa-clipboard-check"></i>
-                            <span>Diario</span>
+                            <span>Empresas</span>
                         </a>
                     </li>
   

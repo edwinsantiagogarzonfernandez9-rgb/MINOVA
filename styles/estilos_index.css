@@ -247,7 +247,6 @@ html.alto-contraste .status{ border:.125rem solid #000;}
     grid-template:
         "bienvenida" 
         "secciones" 
-        "paneles" 
         / 1fr;
 }
 
@@ -261,7 +260,6 @@ html.alto-contraste .status{ border:.125rem solid #000;}
         grid-template:
         "bienvenida"
         "secciones"
-        "paneles"
         / 1fr;
         .welcome{
             flex-direction:column;
@@ -294,7 +292,6 @@ html.alto-contraste .status{ border:.125rem solid #000;}
         grid-template: 
         "bienvenida"
         "secciones"
-        "panales"
         auto;
         .welcome{
             flex-direction:column;
@@ -361,9 +358,6 @@ html.alto-contraste .status{ border:.125rem solid #000;}
        .cards2{
         grid-template-columns: 1fr;
        }
-       .cards2 table{
-        min-width:700px;
-    }
 
     }
     
@@ -463,6 +457,9 @@ html.alto-contraste .status{ border:.125rem solid #000;}
     align-items:center;
     gap:0.875rem;
     margin-bottom:1rem;
+}
+.dark-theme .card{
+   color:var(--blanco);
 }
 .steps{
     list-style:none;

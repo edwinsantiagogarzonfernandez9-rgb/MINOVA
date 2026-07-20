@@ -3,16 +3,7 @@
 // ============================================================
 const STORAGE_KEY = "minova_equipos";
 const DATOS_INICIALES = [
-    { nombre: 'Excavadora CAT 323D',      codigo: 'EQ-001', serie: 'SN-323D-2019-001',  tipo: 'Excavadora',      marca: 'CAT',     ubicacion: 'Zona Norte',    estado: 'Activo' },
-    { nombre: 'Retroexcavadora JCB 3CX',  codigo: 'EQ-002', serie: 'SN-3CX-2020-045',   tipo: 'Retroexcavadora', marca: 'JCB',     ubicacion: 'Zona Sur',      estado: 'Mantenimiento' },
-    { nombre: 'Cargador CAT 950H',         codigo: 'EQ-003', serie: 'SN-950H-2018-012',  tipo: 'Cargador',        marca: 'CAT',     ubicacion: 'Patio Central', estado: 'Activo' },
-    { nombre: 'Malacate Komatsu WA200',    codigo: 'EQ-004', serie: 'SN-WA200-2021-007', tipo: 'Malacate',        marca: 'Komatsu', ubicacion: 'Galería 3',     estado: 'Activo' },
-    { nombre: 'Vagoneta Volvo A40G',       codigo: 'EQ-005', serie: 'SN-A40G-2022-003',  tipo: 'Vagoneta',        marca: 'Volvo',   ubicacion: 'Zona Este',     estado: 'Fuera de servicio' },
-    { nombre: 'Pulmón Compacto JCB',       codigo: 'EQ-006', serie: 'SN-PCJ-2020-088',   tipo: 'Pulmón',          marca: 'JCB',     ubicacion: 'Taller',        estado: 'Activo' },
-    { nombre: 'Excavadora Komatsu PC290',  codigo: 'EQ-007', serie: 'SN-PC290-2017-033', tipo: 'Excavadora',      marca: 'Komatsu', ubicacion: 'Zona Norte',    estado: 'Inactivo' },
-    { nombre: 'Cargador Volvo L90H',       codigo: 'EQ-008', serie: 'SN-L90H-2023-001',  tipo: 'Cargador',        marca: 'Volvo',   ubicacion: 'Zona Sur',      estado: 'Activo' },
-    { nombre: 'Malacate CAT 745',          codigo: 'EQ-009', serie: 'SN-745-2019-021',   tipo: 'Malacate',        marca: 'CAT',     ubicacion: 'Galería 1',     estado: 'Mantenimiento' },
-    { nombre: 'Retroexcavadora CAT 430F2', codigo: 'EQ-010', serie: 'SN-430F2-2021-015', tipo: 'Retroexcavadora', marca: 'CAT',     ubicacion: 'Patio Central', estado: 'Activo' },
+    { nombre: 'Electrobomba',      codigo: 'PT2-EL01', serie: 'SN-323D-2019-001',  tipo: 'electrobomba',      marca: 'IHM',     ubicacion: 'Zona Norte',    estado: 'Activo' },
 ];
 
 function cargarEquipos() {
@@ -151,9 +142,10 @@ function render() {
                     <td>${d.ubicacion}</td>
                     <td>${badge(d.estado)}</td>
                     <td>
-                        <button class="btn-azul" title="Ver detalle" onclick="verDetalle('${d.nombre}')">
+
+                        <a href="hj_equipo.php"><button class="btn-azul" title="Ver detalle" onclick="verDetalle('${d.nombre}')">
                             <i class="fa-solid fa-eye"></i>
-                        </button>
+                        </button></a>
                         <button class="btn-azul" title="Editar" onclick="editarEquipo(${index})">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
@@ -297,7 +289,9 @@ document.addEventListener('baseLoaded', () => {
     if (btnAbrir)  btnAbrir.addEventListener('click', abrirModal);
     if (btnCerrar) btnCerrar.addEventListener('click', cerrarModal);
     if (backdrop)  backdrop.addEventListener('click', cerrarModal);
-    if (form)      form.addEventListener('submit', guardarEquipo);
+    // El formulario de equipos debe enviarse al servidor PHP.
+    // No interceptamos el submit aquí para evitar bloquear el POST.
+    // if (form)      form.addEventListener('submit', guardarEquipo);
 
     doSearch();
 });

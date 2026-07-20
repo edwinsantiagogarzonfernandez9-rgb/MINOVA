@@ -134,7 +134,7 @@ function render() {
         <td>${m.ubicacion}</td>
         <td>${badge(m.estado)}</td>
         <td>
-          <a href="hj_maquina.html" ><button class="btn-azul" title="Ver detalle")">
+          <a href="hj_maquina.php" ><button class="btn-azul" title="Ver detalle")">
             <i class="fa-solid fa-eye"></i>
           </button></a>
           <button class="btn-azul" title="Eliminar" onclick="confirmarEliminar('${m.codigo}', '${m.nombre}')">

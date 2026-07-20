@@ -335,7 +335,7 @@ footer{grid-area: footer;}
 
 /* ========================================================================================
    Estilos y componentes Sidebar
-=========================================================================================== */
+===================================== */
 
 .sidebar {
     margin-top: 4rem;
@@ -554,8 +554,9 @@ main.cerrado{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    
 }
-.welcome h1 { color: var(--texto); }
+.welcome h1 { color: var(--texto);text-transform: uppercase; }
 .welcome p  { color: var(--texto2); }
 
 .date {
@@ -795,6 +796,8 @@ main.cerrado{
     transform: translate(-50%, -50%) scale(.95);
     z-index: 9999;
     padding: 1.5rem;
+    max-height: calc(105vh - 4rem);
+    overflow-y: auto;
 }
 .modal-tool.open { transform: translate(-50%, -50%) scale(1); }
 
@@ -811,6 +814,7 @@ main.cerrado{
     color: var(--principal);
     font-size: 1.2rem;
 }
+.dark-theme .modal-header h2 { color: var(--blanco); }
 .cerrar-modal {
     border: none;
     background: transparent;
@@ -830,6 +834,7 @@ main.cerrado{
 .input-group input[type="time"],
 .input-group input[type="date"],
 .input-group input[type="file"] {
+    background: var(--blanco);
     padding: .85rem 1rem;
     border: .0625rem solid var(--texto2);
     border-radius: .7rem;
