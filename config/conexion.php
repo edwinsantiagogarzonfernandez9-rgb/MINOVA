@@ -1,5 +1,6 @@
 <?php
 
+$conn = new mysqli("localhost", "root", "1055313199", "minova");
 
 $host    = "localhost";
 $usuario = "root";
