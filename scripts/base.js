@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             'index.php': 'inicio',
             'equipos.php': 'equipos',
             'reportes.php': 'reportes',
-            'uso_diario.php': 'diario',
+            'empresa.php': 'empresa',
             'usuarios.php': 'usuarios',
             'ubicaciones.php': 'ubicaciones',
             'maquinas.php': 'maquinas',

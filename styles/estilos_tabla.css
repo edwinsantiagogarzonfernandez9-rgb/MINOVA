@@ -1,7 +1,9 @@
 table { 
     width: 100%;
-    background: var(--white);
+    border-collapse: collapse;
+    background: var(--blanco);
     border-radius: 0.75rem;
+    overflow: hidden;
     box-shadow: 0 0.125rem 0.5rem var(--principal);
 }
 
@@ -10,7 +12,7 @@ thead tr {
 }
 
 thead th {
-    color: var(--white);
+    color: var(--blanco);
     font-size: 0.95rem;
     font-weight: 600;
     padding: 0.875rem 1rem;
@@ -35,5 +37,8 @@ tbody td {
 }
 tbody tr:hover { 
     background: var(--hover);
+}
+.dark-theme table { 
+    background: var(--contenedor);
 }
 

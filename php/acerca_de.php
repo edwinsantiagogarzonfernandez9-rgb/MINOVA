@@ -100,7 +100,9 @@
                     <h4>Dilan Santiago</h4>
                     <span class="team-role">Dictador</span>
                 </div>
-
+            </div>
+            <br>
+            <div class="team-grid">
                 <div class="team-card">
                     <div class="team-avatar">
                         <img src="../img/kev.jpeg" alt="Avatar de Kevin"> 

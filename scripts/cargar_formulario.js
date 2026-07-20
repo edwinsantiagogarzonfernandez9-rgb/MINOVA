@@ -76,7 +76,7 @@ function irRegistrosPagina() {
         return;
     }
 
-    window.location.href = `registros_inspeccion.html?formulario=${encodeURIComponent(form.id)}`;
+    window.location.href = `registros_inspeccion.php?formulario=${encodeURIComponent(form.id)}`;
 }
 
 
