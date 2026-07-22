@@ -4,7 +4,7 @@ $conn = new mysqli("localhost", "root", "1055313199", "minova");
 
 $host    = "localhost";
 $usuario = "root";
-$clave   = "";
+$clave   = "1055313199";
 $bd      = "minova";
 $puertos = [3306, 3307,]; // agrega más puertos aquí si algún día hace falta
 
