@@ -110,7 +110,9 @@ if(!empty($detallemaquina['imagen'])){
                 </section>
                 <section class="middle">
                     <div class="btn-container">
-                        <button class="btn-azul"><i class="fas fa-home"></i> Uso diario</button>
+                        <button class="btn-azul" type="button" onclick="window.location.href='uso_diario.php?id=<?php echo urlencode((string)$idmaquina); ?>&nombre_maquina=<?php echo urlencode((string)$detallemaquina['nombre']); ?>'">
+                            <i class="fas fa-home"></i> Uso diario
+                        </button>
                         <button class="btn-azul"><i class="fas fa-cog"></i> Pre operacional</button>
                         <a href="agregar_inspeccion.php"><button class="btn-azul"><i class="fas fa-search"></i> Inspeccion</button></a>
                     </div>

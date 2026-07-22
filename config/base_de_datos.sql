@@ -122,7 +122,7 @@ CREATE TABLE maquina (
     categoria_maquina_id INT NOT NULL,
     empresa_nit INT NOT NULL,
     responsable VARCHAR(45) NOT NULL,
-    uso_maquina VARCHAR(45) NOT NULL,
+    uso_maquina VARCHAR(100) NOT NULL,
     en_operacion ENUM('si', 'no') NOT NULL,
     caracteristicas TEXT NOT NULL,
     FOREIGN KEY (ubicacion_id) REFERENCES ubicacion(id),
@@ -234,7 +234,9 @@ CREATE TABLE uso_diario (
     fin_operacion TIME NOT NULL,
     observaciones VARCHAR(100),
     maquina_id INT NOT NULL,
-    FOREIGN KEY (maquina_id) REFERENCES equipo(id)
+    FOREIGN KEY (maquina_id) REFERENCES maquina(id),
+    estado_funcionamiento varchar(45) not null,
+    responsable varchar(45) not null
 );
  
 -- ---------------------------------------------------------
