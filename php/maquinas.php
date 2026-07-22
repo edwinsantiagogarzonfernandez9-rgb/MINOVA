@@ -128,9 +128,6 @@ $maquinas= $conn->query("SELECT m.id, m.codigo, m.nombre, m.numero_serie, m.mode
                                 <a href="hj_maquina.php?id=<?php echo $maquina['id']; ?>" class="btn-azul">
                                     <i class="fa-solid fa-eye"></i> 
                                 </a>
-                                <a href="editar_maquina.php?id=<?php echo $maquina['id']; ?>" class="btn-azul">
-                                    <i class="fa-solid fa-pen-to-square"></i> 
-                                </a>
                                 <a href="eliminar_maquina.php?id=<?php echo $maquina['id']; ?>" class="btn-azul" onclick="return confirm('¿Está seguro de que desea eliminar esta máquina?');">
                                     <i class="fa-solid fa-trash"></i> 
                                 </a>
@@ -142,7 +139,7 @@ $maquinas= $conn->query("SELECT m.id, m.codigo, m.nombre, m.numero_serie, m.mode
             </section>
 
             <div class="btn-container">
-                <button id="abrirModal" class="btn btn-azul">
+                <button id="abrirModal" class="btn-azul">
                     <i class="fa-solid fa-plus"></i>
                     Nueva Máquina
                 </button>
